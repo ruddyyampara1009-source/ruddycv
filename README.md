@@ -1,0 +1,2 @@
+# ruddycv
+pagina Ruddy cv
