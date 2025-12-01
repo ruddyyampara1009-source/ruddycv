@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería - Ruddy Carlos Yampara Ichuta</title>
+
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 
 <body>
@@ -28,13 +30,38 @@
     </header>
 
     <main>
-        <section class="galeria">
-            <img src="imagenes/galeria1.jpg" alt="Diseño 1">
-            <img src="imagenes/galeria2.jpg" alt="Diseño 2">
-            <img src="imagenes/galeria3.jpg" alt="Diseño 3">
-            <img src="imagenes/galeria4.jpg" alt="Diseño 4">
+
+        <!-- ======================= -->
+        <!--   GALERÍA DE IMÁGENES   -->
+        <!-- ======================= -->
+        <section>
+            <h2 style="text-align:center;">Galería de Imágenes</h2>
+            <div class="galeria">
+                <img src="imagenes/imagen1.jpg" alt="Diseño 1">
+                <img src="imagenes/imagen2.jpg" alt="Diseño 2">
+                <img src="imagenes/imagen3.jpg" alt="Diseño 3">
+                <img src="imagenes/imagen4.jpg" alt="Diseño 4">
+            </div>
         </section>
+
+        <!-- ======================= -->
+        <!--     GALERÍA DE LIBROS   -->
+        <!-- ======================= -->
+        <section style="margin-top: 50px;">
+            <h2 style="text-align:center;">Libros</h2>
+
+            <div class="galeria2">
+                <!-- Libro 1 -->
+                <a class="openPdf" data-pdf="documentos/Manual Sistema Moderno Version 1.1-1.pdf">
+                    <img src="imagenes/Manual Sistema Moderno Version 1.1-1.jpg" 
+                         alt="Manual del Sistema Moderno"
+                         style="cursor: pointer;">
+                </a>
+            </div>
+        </section>
+
     </main>
+
 
     <footer class="footer-futurista">
         <div class="logo">
@@ -43,6 +70,51 @@
         </div>
     </footer>
 
-</body>
+    <!-- =============================== -->
+    <!--       MODAL PARA PDF            -->
+    <!-- =============================== -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content" style="width: 90%; height: 90%;">
+            <div class="box" style="width: 100%; height: 100%; padding: 0;">
+                <iframe id="pdfViewer" src="" 
+                        style="width: 100%; height: 100%; border: none;"></iframe>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
 
+
+
+    <!-- =============================== -->
+    <!--             SCRIPT              -->
+    <!-- =============================== -->
+    <script>
+        // ===============================
+        //      ABRIR PDFs EN MODAL
+        // ===============================
+        document.querySelectorAll(".openPdf").forEach(function (item) {
+            item.addEventListener("click", function () {
+                const pdf = this.getAttribute("data-pdf");
+                document.getElementById("pdfViewer").src = pdf + "#toolbar=0&navpanes=0&scrollbar=0";
+                document.getElementById("pdfModal").classList.add("is-active");
+            });
+        });
+
+        // Cerrar PDF Modal
+        document.querySelector("#pdfModal .modal-close").addEventListener("click", function () {
+            document.getElementById("pdfModal").classList.remove("is-active");
+            document.getElementById("pdfViewer").src = "";
+        });
+
+        document.querySelector("#pdfModal .modal-background").addEventListener("click", function () {
+            document.getElementById("pdfModal").classList.remove("is-active");
+            document.getElementById("pdfViewer").src = "";
+        });
+
+
+
+    </script>
+
+</body>
 </html>
